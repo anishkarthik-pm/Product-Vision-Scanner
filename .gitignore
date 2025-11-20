@@ -45,6 +45,15 @@ output/
 reports/
 *.log
 
+# Batch processing folders (ignore contents but keep folders)
+input_images/*
+!input_images/.gitkeep
+!input_images/README.md
+
+output_reports/*
+!output_reports/.gitkeep
+!output_reports/README.md
+
 # OS
 .DS_Store
 Thumbs.db
