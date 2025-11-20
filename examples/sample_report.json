@@ -1,0 +1,201 @@
+{
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2025-11-20T10:30:00Z",
+  "image_metadata": {
+    "filename": "store_shelf.jpg",
+    "resolution": "1920x1080",
+    "quality_score": 0.95
+  },
+  "analysis_status": "success",
+  "products": [
+    {
+      "product_id": "prod_001",
+      "name": "Organic Whole Milk",
+      "brand": "Happy Farms",
+      "category": "dairy",
+      "quantity": 3,
+      "unit_size": "1 gallon",
+      "location": {
+        "shelf_level": "middle",
+        "section": "dairy",
+        "position": "left side"
+      },
+      "dates": {
+        "expiration_date": "2025-11-25",
+        "manufacture_date": null,
+        "best_before_date": null,
+        "date_visibility": "clear"
+      },
+      "condition": {
+        "status": "good",
+        "damage_type": null,
+        "notes": null
+      },
+      "compliance": {
+        "is_compliant": true,
+        "violations": []
+      },
+      "pricing": {
+        "price": "$4.99",
+        "currency": "USD",
+        "has_price_tag": true
+      },
+      "confidence": 0.95,
+      "field_confidence": {
+        "name": 0.98,
+        "brand": 0.97,
+        "expiration_date": 0.95,
+        "condition": 0.99
+      }
+    },
+    {
+      "product_id": "prod_002",
+      "name": "Wheat Bread",
+      "brand": "Baker's Choice",
+      "category": "bakery",
+      "quantity": 2,
+      "unit_size": "24 oz",
+      "location": {
+        "shelf_level": "top",
+        "section": "bakery",
+        "position": "center"
+      },
+      "dates": {
+        "expiration_date": "2025-11-18",
+        "manufacture_date": null,
+        "best_before_date": "2025-11-18",
+        "date_visibility": "clear"
+      },
+      "condition": {
+        "status": "expired",
+        "damage_type": null,
+        "notes": "Product is 2 days past expiration date"
+      },
+      "compliance": {
+        "is_compliant": false,
+        "violations": [
+          {
+            "type": "expired",
+            "severity": "critical",
+            "description": "Product expired on 2025-11-18, currently 2 days past expiration"
+          }
+        ]
+      },
+      "pricing": {
+        "price": "$3.49",
+        "currency": "USD",
+        "has_price_tag": true
+      },
+      "confidence": 0.92,
+      "field_confidence": {
+        "name": 0.94,
+        "brand": 0.90,
+        "expiration_date": 0.93,
+        "condition": 0.95
+      }
+    },
+    {
+      "product_id": "prod_003",
+      "name": "Tomato Soup",
+      "brand": "Campbell's",
+      "category": "canned goods",
+      "quantity": 4,
+      "unit_size": "10.75 oz",
+      "location": {
+        "shelf_level": "bottom",
+        "section": "canned goods",
+        "position": "right side"
+      },
+      "dates": {
+        "expiration_date": "2026-05-15",
+        "manufacture_date": null,
+        "best_before_date": "2026-05-15",
+        "date_visibility": "clear"
+      },
+      "condition": {
+        "status": "damaged",
+        "damage_type": ["dented"],
+        "notes": "One can has significant denting on the side"
+      },
+      "compliance": {
+        "is_compliant": false,
+        "violations": [
+          {
+            "type": "damaged",
+            "severity": "medium",
+            "description": "Can shows denting which may compromise product integrity"
+          }
+        ]
+      },
+      "pricing": {
+        "price": "$1.29",
+        "currency": "USD",
+        "has_price_tag": true
+      },
+      "confidence": 0.88,
+      "field_confidence": {
+        "name": 0.96,
+        "brand": 0.98,
+        "expiration_date": 0.91,
+        "condition": 0.85
+      }
+    },
+    {
+      "product_id": "prod_004",
+      "name": "Orange Juice",
+      "brand": "Tropicana",
+      "category": "beverages",
+      "quantity": 1,
+      "unit_size": "52 fl oz",
+      "location": {
+        "shelf_level": "middle",
+        "section": "beverages",
+        "position": "center"
+      },
+      "dates": {
+        "expiration_date": "unclear",
+        "manufacture_date": null,
+        "best_before_date": null,
+        "date_visibility": "unclear"
+      },
+      "condition": {
+        "status": "unclear",
+        "damage_type": null,
+        "notes": "Date label is partially obscured, cannot determine expiration"
+      },
+      "compliance": {
+        "is_compliant": null,
+        "violations": [
+          {
+            "type": "missing_label",
+            "severity": "low",
+            "description": "Expiration date not clearly visible for verification"
+          }
+        ]
+      },
+      "pricing": {
+        "price": "$5.99",
+        "currency": "USD",
+        "has_price_tag": true
+      },
+      "confidence": 0.70,
+      "field_confidence": {
+        "name": 0.95,
+        "brand": 0.97,
+        "expiration_date": 0.30,
+        "condition": 0.60
+      }
+    }
+  ],
+  "overall_compliance": {
+    "status": "fail",
+    "total_products": 4,
+    "compliant_count": 1,
+    "violation_count": 3,
+    "critical_violations": [
+      "Expired product found: Wheat Bread (Baker's Choice) - expired 2025-11-18"
+    ],
+    "summary": "Store audit identified 4 products. Found 1 critical violation (expired bread), 1 damaged item (dented soup can), and 1 product with unclear expiration date. Immediate action required to remove expired items."
+  },
+  "notes": "Audit performed during normal business hours. Some products may have been restocked during analysis. Recommend immediate removal of expired bread product."
+}

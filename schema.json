@@ -1,0 +1,249 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Retail Compliance Report",
+  "description": "Structured compliance audit data extracted from retail store images",
+  "type": "object",
+  "required": ["report_id", "timestamp", "analysis_status", "products", "overall_compliance"],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "description": "Unique identifier for this compliance report"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the analysis was performed"
+    },
+    "image_metadata": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": ["string", "null"]
+        },
+        "resolution": {
+          "type": ["string", "null"]
+        },
+        "quality_score": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Image quality assessment (0.0-1.0)"
+        }
+      }
+    },
+    "analysis_status": {
+      "type": "string",
+      "enum": ["success", "partial", "failed"],
+      "description": "Overall analysis completion status"
+    },
+    "products": {
+      "type": "array",
+      "description": "List of products identified in the image",
+      "items": {
+        "type": "object",
+        "required": ["product_id", "confidence"],
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "Unique identifier for this product in the report"
+          },
+          "name": {
+            "type": ["string", "null"],
+            "description": "Product name as visible on packaging"
+          },
+          "brand": {
+            "type": ["string", "null"],
+            "description": "Brand name if visible"
+          },
+          "category": {
+            "type": ["string", "null"],
+            "description": "Product category (e.g., dairy, produce, bakery)"
+          },
+          "quantity": {
+            "type": ["integer", "null"],
+            "description": "Number of units visible"
+          },
+          "unit_size": {
+            "type": ["string", "null"],
+            "description": "Size/weight of product (e.g., '500ml', '1kg')"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "shelf_level": {
+                "type": ["string", "null"],
+                "description": "Shelf position (e.g., 'top', 'middle', 'bottom')"
+              },
+              "section": {
+                "type": ["string", "null"],
+                "description": "Store section if identifiable"
+              },
+              "position": {
+                "type": ["string", "null"],
+                "description": "Additional position details"
+              }
+            }
+          },
+          "dates": {
+            "type": "object",
+            "properties": {
+              "expiration_date": {
+                "type": ["string", "null"],
+                "description": "Expiration date in YYYY-MM-DD format or 'unclear'"
+              },
+              "manufacture_date": {
+                "type": ["string", "null"],
+                "description": "Manufacturing date in YYYY-MM-DD format or 'unclear'"
+              },
+              "best_before_date": {
+                "type": ["string", "null"],
+                "description": "Best before date in YYYY-MM-DD format or 'unclear'"
+              },
+              "date_visibility": {
+                "type": "string",
+                "enum": ["clear", "partial", "unclear", "not_visible"],
+                "description": "How clearly the date information is visible"
+              }
+            }
+          },
+          "condition": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["good", "damaged", "expired", "near_expiry", "unclear"],
+                "description": "Overall condition assessment"
+              },
+              "damage_type": {
+                "type": ["array", "null"],
+                "items": {
+                  "type": "string",
+                  "enum": ["dented", "torn", "leaked", "crushed", "discolored", "moldy", "other"]
+                },
+                "description": "Types of damage visible"
+              },
+              "notes": {
+                "type": ["string", "null"],
+                "description": "Additional condition observations"
+              }
+            }
+          },
+          "compliance": {
+            "type": "object",
+            "properties": {
+              "is_compliant": {
+                "type": ["boolean", "null"],
+                "description": "Whether product meets compliance standards"
+              },
+              "violations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["expired", "damaged", "mislabeled", "improper_storage", "missing_label", "other"]
+                    },
+                    "severity": {
+                      "type": "string",
+                      "enum": ["critical", "high", "medium", "low"]
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pricing": {
+            "type": "object",
+            "properties": {
+              "price": {
+                "type": ["string", "null"],
+                "description": "Price as visible on label"
+              },
+              "currency": {
+                "type": ["string", "null"],
+                "description": "Currency code (e.g., 'USD', 'EUR')"
+              },
+              "has_price_tag": {
+                "type": ["boolean", "null"]
+              }
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Overall confidence in product identification (0.0-1.0)"
+          },
+          "field_confidence": {
+            "type": "object",
+            "description": "Confidence scores for individual fields",
+            "properties": {
+              "name": {
+                "type": ["number", "null"],
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "brand": {
+                "type": ["number", "null"],
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "expiration_date": {
+                "type": ["number", "null"],
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "condition": {
+                "type": ["number", "null"],
+                "minimum": 0.0,
+                "maximum": 1.0
+              }
+            }
+          }
+        }
+      }
+    },
+    "overall_compliance": {
+      "type": "object",
+      "required": ["status", "total_products", "compliant_count", "violation_count"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "warning", "unclear"],
+          "description": "Overall compliance status"
+        },
+        "total_products": {
+          "type": "integer",
+          "description": "Total number of products analyzed"
+        },
+        "compliant_count": {
+          "type": "integer",
+          "description": "Number of compliant products"
+        },
+        "violation_count": {
+          "type": "integer",
+          "description": "Number of products with violations"
+        },
+        "critical_violations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of critical issues found"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Brief summary of compliance findings"
+        }
+      }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Additional observations or context"
+    }
+  }
+}
