@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# TensorFlow / ML
+*.h5
+*.pb
+*.ckpt
+*.tflite
+*.savedmodel
+output/
+logs/
+*.log
+
+# Dataset
+fruits-360/
+dataset/
+*.zip
+*.tar.gz
+
+# Android
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+bin/
+gen/
+out/
+release/
+
+# Android Studio
+.idea/
+*.iml
+.gradle/
+local.properties
+.DS_Store
+build/
+captures/
+.externalNativeBuild
+.cxx
+
+# Model files (too large for git)
+*.tflite
+*.h5
+
+# OS
+.DS_Store
+Thumbs.db

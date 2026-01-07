@@ -1,0 +1,26 @@
+# TensorFlow and ML dependencies
+tensorflow==2.14.0
+keras==2.14.0
+
+# Data processing
+numpy==1.24.3
+pandas==2.0.3
+pillow==10.0.0
+opencv-python==4.8.0.76
+
+# Visualization
+matplotlib==3.7.2
+seaborn==0.12.2
+
+# Progress bars
+tqdm==4.66.1
+
+# Model conversion
+tensorflowjs==4.11.0
+
+# Dataset handling
+kaggle==1.5.16
+scikit-learn==1.3.0
+
+# Utilities
+pyyaml==6.0.1

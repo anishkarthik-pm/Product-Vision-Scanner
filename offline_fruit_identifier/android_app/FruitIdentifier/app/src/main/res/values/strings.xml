@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fruit Identifier</string>
+    <string name="camera_permission_required">Camera permission is required</string>
+    <string name="point_camera">Point camera at fruit or vegetable</string>
+    <string name="loading_model">Loading model…</string>
+    <string name="model_loaded">Model loaded</string>
+    <string name="inference_time">Inference: %dms</string>
+</resources>
